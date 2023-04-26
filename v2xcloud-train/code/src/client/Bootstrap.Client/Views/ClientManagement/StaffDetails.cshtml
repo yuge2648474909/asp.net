@@ -1,0 +1,112 @@
+﻿@model NavigatorBarModel
+@{ ViewBag.Title = "人员详情";
+    Layout = "_Default"; }
+@section css {
+    <environment include="Development">
+        <link href="~/lib/nestable2/jquery.nestable.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+    </environment>
+    <link href="~/lib/treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="~/lib/longbow-select/longbow-select.css" rel="stylesheet" />
+    <link href="~/css/fa.css" rel="stylesheet" asp-append-version="true" />
+
+    <style>
+        img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/nestable2/jquery.nestable.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/nestable2/jquery.nestable.min.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.min.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.min.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+    </environment>
+    <script src="~/lib/longbow-select/longbow-select.js"></script>
+    <script type="text/javascript" src="~/js/echarts.min.js"></script>
+    <script src="~/js/staffdetails.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=9Lw8baem7yWeExuwTphzWygyGftp3EaA"></script>
+
+}
+
+
+<form enctype="multipart/form-data" data-toggle="LgbValidate" data-valid-button=".btnSubmit">
+    <input hidden id="id" value="@ViewBag.id" />
+    <div class="row">
+        <div class="form-group col-6">
+            <label class="control-label">用户id</label>
+            <input id="userid" name="userid" class="form-control" placeholder="请输入用户id" data-valid="true" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-6">
+            <label class="control-label">昵称</label>
+            <input id="nickname" name="nickname" class="form-control" placeholder="请输入昵称" data-valid="true" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-6">
+            <label class="control-label">性别</label>
+            <input id="sex" name="sex" class="form-control" placeholder="请输入性别" data-valid="true" readonly="readonly" />
+        </div>
+
+
+        <div class="form-group col-6">
+            <label class="control-label">省份</label>
+            <input id="province" name="province" class="form-control" placeholder="请输入省份" data-valid="true" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-6">
+            <label class="control-label">城市</label>
+            <input id="city" name="city" class="form-control" placeholder="请输入城市" data-valid="true" readonly="readonly" />
+        </div>
+
+
+        <div class="form-group col-6">
+            <label class="control-label">国家</label>
+            <input id="country" name="country" class="form-control" placeholder="请输入国家" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-6">
+            <label class="control-label">UnionId</label>
+            <input id="unionid" name="unionid" class="form-control" placeholder="请输入unionid" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-6">
+            <label class="control-label">open_userid</label>
+            <input id="open_userid" name="open_userid" class="form-control" placeholder="请输入open_userid" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-12">
+            <label class="control-label">允许登录</label>
+            <input id="permission" name="permission" class="form-control" placeholder="请输入是否允许登录" readonly="readonly" />
+        </div>
+
+        <div class="form-group col-3">
+            <label class="control-label">用户头像</label>
+            <img id="headimgurl" class="card-img" src="~/images/Default Img.jpg" />
+        </div>
+
+    </div>
+
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <a asp-action="StaffList" class="btn btn-info">返回</a>
+            <a class="btn btn-primary" href="/ClientManagement/StaffEdit/@ViewBag.id">编辑</a>
+        </div>
+    </div>
+
+
+
+</form>

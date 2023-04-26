@@ -1,0 +1,30 @@
+﻿@model NavigatorBarModel
+@{ ViewData["Title"] = "云展示"; }
+@section css {
+    <link href="~/lib/captcha/slidercaptcha.css" rel="stylesheet" />
+    <style>
+        .img-tab {
+            width: 345px;
+            height: auto;
+        }
+
+        @@media (min-width: 667px) {
+            .img-tab {
+                width: 500px;
+            }
+        }
+    </style>
+}
+@section javascript {
+    <script src="~/lib/captcha/longbow.slidercaptcha.js"></script>
+    <script src="~/js/index.js"></script>
+}
+<div class="form-inline">
+    <div class="row">
+        <div class="form-group col-12 col-lg-6">
+            <a href="~/images/index.png" target="_blank" title="点击查看高清大图">
+                <img src="~/images/dashboard.png" />
+            </a>
+        </div>
+    </div>
+</div>

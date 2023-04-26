@@ -1,0 +1,67 @@
+﻿@model NavigatorBarModel
+@{ ViewBag.Title = "登录日志";
+    Layout = "_Default"; }
+
+@section css {
+    <environment include="Development">
+        <link href="~/lib/datetimepicker/css//bootstrap-datetimepicker.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/datetimepicker/css//bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    </environment>
+    <style>
+        .card .card-body {
+            padding-bottom: 15px;
+        }
+
+        .spark {
+            position: absolute;
+        }
+
+        .loading {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 178px;
+            width: 100%;
+        }
+
+            .loading span {
+                margin-left: 10px;
+            }
+    </style>
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/bootstrap-table/bootstrap-table.js"></script>
+        <script src="~/lib/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+        <script src="~/lib/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script src="~/lib/echart/echarts-all.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/bootstrap-table/bootstrap-table.min.js"></script>
+        <script src="~/lib/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+        <script src="~/lib/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="~/lib/echart/echarts-all.min.js"></script>
+    </environment>
+    <script src="~/lib/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="~/js/index_2test.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/echarts.min.js"></script>
+    <script type="text/javascript" src="~/js/wonderland.js"></script>
+}
+
+<div id="row1">
+    first row
+
+</div>
+<a href="http://www.baidu.com">单击这里</a>
+<table border=1>
+    <tr><td>第一行第一列</td><td>第一行第二列</td></tr>
+</table>
+<h1 onclick="showMessagebox()">
+    this is a title
+</h1>
+<button onclick="submit()">提交</button>

@@ -1,0 +1,66 @@
+﻿@model NavigatorBarModel
+@{ ViewBag.Title = "登录日志";
+    Layout = "_Default"; }
+@section css {
+    <environment include="Development">
+        <link href="~/lib/nestable2/jquery.nestable.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+    </environment>
+    <link href="~/lib/treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="~/lib/longbow-select/longbow-select.css" rel="stylesheet" />
+    <link href="~/css/fa.css" rel="stylesheet" asp-append-version="true" />
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/nestable2/jquery.nestable.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/nestable2/jquery.nestable.min.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.min.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.min.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+    </environment>
+    <script src="~/lib/longbow-select/longbow-select.js"></script>
+    <script src="~/js/datamanagement.js" asp-append-version="true"></script>
+}
+<div id="toolbar" class="d-none">
+</div>
+
+@section query {
+    <form class="form-inline">
+        <div class="row">
+            <div class="form-group col-12">
+                <label class="control-label" for="nickname">昵称</label>
+                <input type="text" class="form-control" id="nickname" data-provide="typeahead" data-default-val="" />
+            </div>
+            <div class="form-group col-12">
+                <label class="control-label" for="userid">用户id</label>
+                <input type="text" class="form-control" id="userid" data-default-val="" />
+            </div>
+            <div class="form-group col-12">
+                <label class="control-label" for="company">公司</label>
+                <input type="text" class="form-control" id="company" data-default-val="" />
+            </div>
+            <div class="form-group col-12">
+                <label class="control-label" for="role">职位</label>
+                <input type="text" class="form-control" id="role" data-default-val="" />
+            </div>
+            <div class="form-group col-12">
+                <label class="control-label" for="login_time">登录时间</label>
+                <input type="text" class="form-control" id="login_time" data-default-val="" />
+            </div>
+            <div class="form-group col-12">
+                <label class="control-label" for="logout_time">登出时间</label>
+                <input type="text" class="form-control" id="logout_time" data-default-val="" />
+            </div>
+        </div>
+    </form>
+}
+@*<button id="backgroud_task" onclick="MessageSender()">单击这里开始后台任务</button>*@
+<table data-Header="fixed">
+</table>

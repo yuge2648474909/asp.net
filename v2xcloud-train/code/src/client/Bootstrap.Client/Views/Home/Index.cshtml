@@ -1,0 +1,131 @@
+﻿@model NavigatorBarModel
+@{ ViewData["Title"] = "首页"; }
+@*@section css {
+        <link href="~/lib/captcha/slidercaptcha.css" rel="stylesheet" />
+        <style>
+            .img-tab {
+                width: 345px;
+                height: auto;
+            }
+
+            @@media (min-width: 667px) {
+                .img-tab {
+                    width: 500px;
+                }
+            }
+        </style>
+    }
+    @section javascript {
+        <script src="~/lib/captcha/longbow.slidercaptcha.js"></script>
+        <script src="~/js/index.js"></script>
+    }*@
+@*<div class="form-inline">
+        <div class="row">
+            <div class="form-group col-12 col-lg-6">
+                <a href="~/images/1.png" target="_blank" title="点击查看高清大图">
+                    <img src="~/images/1.png" />
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-12 col-lg-6">
+                <a href="~/images/2.png" target="_blank" title="点击查看高清大图">
+                    <img src="~/images/2.png" />
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-12 col-lg-6">
+                <a href="~/images/3.png" target="_blank" title="点击查看高清大图">
+                    <img src="~/images/3.png" />
+                </a>
+            </div>
+        </div>
+    </div>*@
+@section css {
+    <environment include="Development">
+        <link href="~/lib/datetimepicker/css//bootstrap-datetimepicker.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/datetimepicker/css//bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+    </environment>
+    <style>
+        .card .card-body {
+            padding-bottom: 15px;
+        }
+
+        .spark {
+            position: absolute;
+        }
+
+        .loading {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 178px;
+            width: 100%;
+        }
+
+            .loading span {
+                margin-left: 10px;
+            }
+    </style>
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/bootstrap-table/bootstrap-table.js"></script>
+        <script src="~/lib/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+        <script src="~/lib/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <script src="~/lib/echart/echarts-all.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/bootstrap-table/bootstrap-table.min.js"></script>
+        <script src="~/lib/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+        <script src="~/lib/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="~/lib/echart/echarts-all.min.js"></script>
+    </environment>
+    <script src="~/lib/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="~/js/index_1.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="~/js/echarts.min.js"></script>
+    <script type="text/javascript" src="~/js/wonderland.js"></script>
+}
+
+<div class="card">
+    <div class="card-header">
+        部门使用
+    </div>
+    <div class="card-body">
+        <div id="business" class="spark"></div>
+
+        <form>
+            <div class="row">
+                <div class="form-group col-6">
+                    <div id="businessLoading_1" class="loading"><i class="fa fa-spinner fa-pulse"></i><span>正在加载...请稍等</span></div>
+                    <div id="businessChart_1" style="height: 300px">
+                    </div>
+                </div>
+                <div class="form-group col-6">
+                    <div id="businessLoading_2" class="loading"><i class="fa fa-spinner fa-pulse"></i><span>正在加载...请稍等</span></div>
+                    <div id="businessChart_2" style="height: 300px">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="card">
+    <div class="card-header">
+        访问日志
+    </div>
+    <div class="card-body">
+        <div id="login" class="spark"></div>
+        <div id="loginLoading" class="loading"><i class="fa fa-spinner fa-pulse"></i><span>正在加载...请稍等</span></div>
+        <div id="loginChart" style="height: 300px">
+        </div>
+    </div>
+</div>
+
+

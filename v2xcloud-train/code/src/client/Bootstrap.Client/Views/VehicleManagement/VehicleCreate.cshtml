@@ -1,0 +1,79 @@
+﻿@model NavigatorBarModel
+@{ ViewBag.Title = "新建车辆";
+    Layout = "_Default"; }
+@section css {
+    <environment include="Development">
+        <link href="~/lib/nestable2/jquery.nestable.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+    </environment>
+    <link href="~/lib/treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="~/lib/longbow-select/longbow-select.css" rel="stylesheet" />
+    <link href="~/css/fa.css" rel="stylesheet" asp-append-version="true" />
+
+    <style>
+        img {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/nestable2/jquery.nestable.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/nestable2/jquery.nestable.min.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.min.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.min.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+    </environment>
+    <script src="~/lib/longbow-select/longbow-select.js"></script>
+    <script type="text/javascript" src="~/js/echarts.min.js"></script>
+    <script src="~/js/vehiclecreate.js" asp-append-version="true"></script>
+}
+
+
+<form enctype="multipart/form-data" data-toggle="LgbValidate" data-valid-button=".btnSubmit">
+    <div class="row">
+        <div class="form-group col-6">
+            <label class="control-label">名称</label>
+            <input id="name" name="name" class="form-control" placeholder="请输入名称" data-valid="true" />
+        </div>
+
+        <div class="form-group col-6">
+            <label class="control-label">类型</label>
+            <input id="type" name="type" class="form-control" placeholder="请输入类型" data-valid="true" />
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <span id="return_without_save_span" style="display: none">
+                <span>没有保存，返回？</span>
+                <a asp-action="VehicleList" class="btn btn-info">返回</a>
+                <a href="#"
+                   class="btn btn-primary"
+                   onclick="cancelback()">
+                    否
+                </a>
+            </span>
+
+            <span id="return_without_save_button">
+                <a href="#" class="btn btn-danger" onclick="return_without_save()">返回</a>
+            </span>
+            <button id="create_submit_btn" type="button" class="btnSubmit btn btn-primary">创建</button>
+        </div>
+    </div>
+
+
+</form>
+
+

@@ -1,0 +1,153 @@
+﻿@model NavigatorBarModel
+@{ ViewBag.Title = "资源列表";
+    Layout = "_Default"; }
+
+@section css {
+    <environment include="Development">
+        <link href="~/lib/nestable2/jquery.nestable.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-fileinput/css/fileinput.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+    </environment>
+    <link href="~/lib/treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="~/lib/longbow-select/longbow-select.css" rel="stylesheet" />
+    <link href="~/css/fa.css" rel="stylesheet" asp-append-version="true" />
+
+    <link href="~/css/tasks.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/baidumap.css" type="text/css" />
+    <link href="~/002/css/BigData.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/002/css/index01.css" rel="stylesheet" type="text/css" />
+    <link href="~/002/js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="~/002/css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/002/js/artDialog/skins/default.css" type="text/css" />
+    <style>
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        .popup-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .popup img {
+            height: 360px;
+            width: 640px;
+        }        
+    </style>
+
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/bootstrap-fileinput/js/fileinput.js"></script>
+        <script src="~/lib/bootstrap-fileinput/js/locales/zh.js"></script>
+        <script src="~/lib/bootstrap-fileinput/themes/fa/theme.js"></script>
+        <script src="~/lib/validate/jquery.validate.js"></script>
+        <script src="~/lib/validate/localization/messages_zh.js"></script>
+
+        <script src="~/lib/nestable2/jquery.nestable.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/nestable2/jquery.nestable.min.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.min.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.min.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+    </environment>
+    <script src="~/lib/longbow-select/longbow-select.js"></script>
+    <script type="text/javascript" src="~/js/echarts.min.js"></script>
+    <script src="~/js/imagemanagement.js" asp-append-version="true"></script>
+}
+
+@*自定义代码块*@
+@section query {
+
+}
+
+@*顶部框元素按钮*@
+
+<div id="toolbar" class="d-none">
+    <div class="toolbar btn-group">
+        <input hidden id="id" value="@ViewBag.id" />
+        @*<button id="button_add" type="button" class="btn btn-success"><i class="fa fa-plus"></i><span>本地上传</span></button> href="/ImageManagement/ImageCreate/@ViewBag.id"*@
+        <a id="button_add" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i><span>新建</span></a>
+        <button id="openForm" class="btn btn-info"><i class="fa fa-upload"></i><span>本地上传</span></button>
+        <button id="button_delete" type="button" class="btn btn-danger"><i class="fa fa-trash"></i><span>删除</span></button>
+        
+    </div>
+</div>
+
+<div class="popup">
+    <div class="popup-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="fileName"> 图片展示</h5>
+        </div>
+        <div class="modal-body">
+            <img id="image_show" src="" alt="Image" class="img-responsive">
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="formModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered "  role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">上传图片</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="myForm" method="post" enctype="multipart/form-data">
+
+                    <div class="form-group">
+                        <label for="firstName">文件名</label>
+                        <input type="text" name="filename" class="form-control" id="fileName">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">待定:</label>
+                        <input type="text" name="nprogress" class="form-control" id="nprogress">
+                    </div>
+                    <div hidden class="form-group">
+                        <label for="lastName">标准:</label>
+                        <input type="text" name="type" placeholder=@ViewBag.id value=@ViewBag.id class="form-control" id="type">
+                    </div>
+
+                    <div class="form-group">
+                        
+                        <input type="file" name="fileToUpload" id="fileToUpload" class="form-control-file">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info">上传</button>
+                    </div>                  
+                </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<table id="list">
+</table>

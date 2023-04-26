@@ -1,0 +1,119 @@
+﻿@model NavigatorBarModel
+@{ ViewBag.Title = "新建车辆";
+    Layout = "_Default"; }
+@section css {
+    <environment include="Development">
+        <link href="~/lib/nestable2/jquery.nestable.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-fileinput/css/fileinput.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link href="~/lib/nestable2/jquery.nestable.min.css" rel="stylesheet" />
+        <link href="~/lib/bootstrap-fileinput/css/fileinput.min.css" rel="stylesheet" />
+    </environment>
+    <link href="~/lib/treegrid/css/jquery.treegrid.css" rel="stylesheet" />
+    <link href="~/lib/longbow-select/longbow-select.css" rel="stylesheet" />
+    <link href="~/css/fa.css" rel="stylesheet" asp-append-version="true" />
+    <link href="~/css/tasks.css" rel="stylesheet" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/baidumap.css" type="text/css" />
+    <link href="~/002/css/BigData.css" rel="stylesheet" type="text/css" />
+
+    <link href="~/002/css/index01.css" rel="stylesheet" type="text/css" />
+    <link href="~/002/js/bstable/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="~/002/css/Security_operation.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/002/js/artDialog/skins/default.css" type="text/css" />
+
+}
+@section javascript {
+    <environment include="Development">
+        <script src="~/lib/bootstrap-fileinput/js/fileinput.js"></script>
+        <script src="~/lib/bootstrap-fileinput/js/locales/zh.js"></script>
+        <script src="~/lib/bootstrap-fileinput/themes/fa/theme.js"></script>
+        <script src="~/lib/validate/jquery.validate.js"></script>
+        <script src="~/lib/validate/localization/messages_zh.js"></script>
+        <script src="~/lib/nestable2/jquery.nestable.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/nestable2/jquery.nestable.min.js"></script>
+        <script src="~/lib/bootstrap-3-typeahead/bootstrap3-typeahead.min.js"></script>
+        <script src="~/lib/treegrid/js/jquery.treegrid.min.js"></script>
+        <script src="~/lib/bootstrap-table/extensions/treegrid/bootstrap-table-treegrid.min.js"></script>
+    </environment>
+    <script src="~/lib/longbow-select/longbow-select.js"></script>
+    <script type="text/javascript" src="~/js/echarts.min.js"></script>
+    <script src="~/js/imageCreate.js" asp-append-version="true"></script>
+}
+
+
+<!--<div class="container" id="formWrapper">
+    <input hidden id="id" value="@ViewBag.id" />
+    <h2>表单框asp-controller="ImageManagement" asp-action="Upload" method="post" enctype="multipart/form-data"</h2>-->
+<form id="myForm"  method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="form-group col-6">
+            <label for="firstName">文件名</label>
+            <input type="text" name="filename" class="form-control" id="fileName">
+        </div>
+        <div class="form-group col-6">
+            <label for="lastName">待定:</label>
+            <input type="text" name="nprogress" class="form-control" id="nprogress">
+        </div>
+        <div hidden class="form-group col-6">
+            <label for="lastName">标准:</label>
+            <input type="text" name="type" placeholder=@ViewBag.id value=@ViewBag.id class="form-control" id="type">
+        </div>
+    </div>
+
+    <div class="form-group">
+            <label for="imagePreview">图片预览:</label>
+            <img id="imagePreview" src="#" alt="上传的图片" style="max-width: 100%; max-height: 200px;">
+        </div>
+
+
+    <div class="form-group">
+        <label for="imageUpload" class="custom-file-label">上传图片:</label>
+        <input type="file" name="file" class="form-control-file" id="imageUpload">
+    </div>
+
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+
+            <span id="return_without_save_span" style="display: none">
+                <span>没有保存，返回？</span>
+                <a asp-action="ImageList" asp-route-id=@ViewBag.id class="btn btn-info">返回</a>
+                <a href="#"
+                   class="btn btn-primary"
+                   onclick="cancelback()">
+                    否
+                </a>
+            </span>
+    <span id="return_without_save_button">
+        <a href="#" class="btn btn-danger" onclick="return_without_save()">返回</a>
+    </span>
+    <button type="submit" class="btn btn-primary">提交</button>
+    <button id="create_submit_btn" type="button" class="btnSubmit btn btn-primary" onclick="">上传</button>
+</div>
+    </div>
+
+</form>
+
+
+
+@*<div class="card">
+        <div class="card-header">修改头像</div>
+        <div class="card-body">
+            <form enctype="multipart/form-data">
+                <div class="form-group">
+                    <input id="fileIcon" type="file">
+                </div>
+            </form>
+            <img class="card-img d-none" src="" />
+        </div>
+    </div>*@
+
+
+
